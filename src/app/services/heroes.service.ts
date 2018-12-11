@@ -34,10 +34,15 @@ export class HeroesService {
 
   getHero(id: string) {
     let getURL = `${this.heroURL}/${id}.json`;
-    return this.http.get(getURL).pipe(map( data => data.json()));
+    return this.http.get(getURL).pipe(map( data => data.json() ));
   }
 
   getHeroes() {
-    return this.http.get(this.heroesURL).pipe(map( data => data.json()));
+    return this.http.get(this.heroesURL).pipe(map( data => data.json() ));
+  }
+
+  deleteHero(id: string) {
+    let deleteURL = `${this.heroURL}/${id}.json`;
+    return this.http.delete(deleteURL).pipe(map( data => data.json() )); 
   }
 }

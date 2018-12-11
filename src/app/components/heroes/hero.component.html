@@ -1,7 +1,7 @@
 <!-- Default form contact -->
 <form (ngSubmit)="saveHero()" #heroForm="ngForm" class="text-center border border-light p-5 animated fadeInUp">
 
-    <p class="h4 mb-4">Hero setting</p>
+    <p class="h4 mb-4">Hero setting {{ hero.name }}</p>
 
     <!-- Name -->
     <input [(ngModel)]="hero.name" name="name" type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" required>
@@ -23,5 +23,5 @@
     <button class="btn btn-primary btn-block" type="submit" [disabled]="!heroForm.valid">Save</button>
 </form>
 <!-- Default form contact -->
-<button class="btn btn-info btn-block" [routerLink]="['/heroes']">Back</button><br>
-<button class="btn btn-default btn-block" (click)="clearForm(heroForm)">Clear</button>
+<button class="btn btn-info btn-block  animated fadeInUp" [routerLink]="['/heroes']">Back</button><br>
+<button class="btn btn-default btn-block  animated fadeInUp" (click)="clearForm(heroForm)">Clear</button>
