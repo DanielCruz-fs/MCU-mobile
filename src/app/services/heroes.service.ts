@@ -8,15 +8,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroesService {
-  firebaseURL: string = 'https://crud-hero.firebaseio.com/heroes.json';
-  firebaseUpdateURL: string = 'https://crud-hero.firebaseio.com/heroes';
+  heroesURL: string = 'https://crud-hero.firebaseio.com/heroes.json';
+  heroURL: string = 'https://crud-hero.firebaseio.com/heroes';
   constructor(private http: Http) { }
 
   saveNewHero(hero: Hero) {
     let body = JSON.stringify(hero);
     let headers = new Headers({ 'Content-Type': 'application/json'});
 
-    return this.http.post(this.firebaseURL, body, { headers }).pipe(map( data => {
+    return this.http.post(this.heroesURL, body, { headers }).pipe(map( data => {
       console.log(data.json());
       return data.json();
     }));
@@ -25,10 +25,19 @@ export class HeroesService {
   updateHero(hero: Hero, id: string) {
     let body = JSON.stringify(hero);
     let headers = new Headers({ 'Content-Type': 'application/json'});
-    let updateURL = `${this.firebaseUpdateURL}/${id}.json`;
+    let updateURL = `${this.heroURL}/${id}.json`;
     return this.http.put(updateURL, body, { headers }).pipe(map( data => {
       console.log(data.json());
       return data.json();
     }));
+  }
+
+  getHero(id: string) {
+    let getURL = `${this.heroURL}/${id}.json`;
+    return this.http.get(getURL).pipe(map( data => data.json()));
+  }
+
+  getHeroes() {
+    return this.http.get(this.heroesURL).pipe(map( data => data.json()));
   }
 }

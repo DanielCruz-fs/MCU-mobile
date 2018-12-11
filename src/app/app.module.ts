@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroComponent } from './components/heroes/hero.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { KeysPipe } from './pipes/keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroComponent,
-    NavbarComponent
+    NavbarComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

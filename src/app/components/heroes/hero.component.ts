@@ -2,8 +2,7 @@ import { HeroesService } from './../../services/heroes.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Hero } from '../../interfaces/hero.interface';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
@@ -21,7 +20,12 @@ export class HeroComponent {
 
   constructor(private heroesService: HeroesService, private router: Router, 
               private activatedRoute: ActivatedRoute) { 
-                this.activatedRoute.params.subscribe( data => this.id = data.id);
+                this.activatedRoute.params.subscribe( data => {
+                  this.id = data.id
+                  if (this.id !== 'new') {
+                    this.heroesService.getHero(this.id).subscribe( data => this.hero = data );
+                  }
+                });
               }
 
   saveHero() {
@@ -42,6 +46,11 @@ export class HeroComponent {
       });
     }
     
+  }
+
+  clearForm(heroForm: NgForm) {
+    this.router.navigate(['/hero', 'new']);
+    heroForm.reset({ home: 'Marvel'});
   }
 
 }
