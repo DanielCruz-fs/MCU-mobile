@@ -1,26 +1,27 @@
 <!-- Default form contact -->
-<form class="text-center border border-light p-5">
+<form (ngSubmit)="saveHero()" #heroForm="ngForm" class="text-center border border-light p-5 animated fadeInUp">
 
     <p class="h4 mb-4">Hero setting</p>
 
     <!-- Name -->
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+    <input [(ngModel)]="hero.name" name="name" type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" required>
 
     <!-- Subject -->
     <label>Home</label>
-    <select class="browser-default custom-select mb-4">
+    <select [(ngModel)]="hero.home" name="home" class="browser-default custom-select mb-4">
         <option value="" disabled selected>Choose an option</option>
-        <option value="1">Marvel</option>
-        <option value="2">DC</option>
+        <option value="Marvel">Marvel</option>
+        <option value="DC">DC</option>
     </select>
 
     <!-- Message -->
     <div class="form-group">
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Desecription"></textarea>
+        <textarea [(ngModel)]="hero.bio" name="bio" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Desecription"></textarea>
     </div>
 
     <!-- Send button -->
-    <button class="btn btn-primary btn-block" type="submit">Save</button>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!heroForm.valid">Save</button><br>
+    <button class="btn btn-info btn-block" [routerLink]="['/heroes']">Back</button>
 
 </form>
 <!-- Default form contact -->
